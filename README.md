@@ -2,7 +2,20 @@
 Sphere Vector Visualizer in 3D (SVV3D) is a tool for visualizing spheres and vectors in a 3D environment.
 
 ## Installation
-Use the following commands to install SVV3D:
+
+Clone this repository:
+
+```bash
+git clone git@github.com:PabloPalaciosAlonso/SphereVectorVisualizer3D.git
+```
+
+Navigate to the cloned directory:
+
+```bash
+cd SphereVectorVisualizer3D
+```
+
+Then use the following commands to install SVV3D:
 
 ```bash
 python setup.py sdist
