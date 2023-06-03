@@ -1,0 +1,13 @@
+README.md
+setup.py
+SVV3D/SVV3D.py
+SVV3D/__init__.py
+SVV3D/actions.py
+SVV3D/initAnimation.py
+SVV3D/readFile.py
+SVV3D.egg-info/PKG-INFO
+SVV3D.egg-info/SOURCES.txt
+SVV3D.egg-info/dependency_links.txt
+SVV3D.egg-info/entry_points.txt
+SVV3D.egg-info/requires.txt
+SVV3D.egg-info/top_level.txt
