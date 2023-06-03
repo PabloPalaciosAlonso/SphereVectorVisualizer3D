@@ -2,10 +2,10 @@
 Sphere Vector Visualizer in 3D
 
 # Installing
-'''
+```
 python setup.py sdist
 pip install dist/SVV3D-1.0.tar.gz
-'''
+```
 
 # Usage:
   SVV3D filename
