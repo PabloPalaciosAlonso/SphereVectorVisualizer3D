@@ -23,16 +23,16 @@ pip install dist/SVV3D-1.0.tar.gz
   *Others:
     -Press C to take a screenshot of the animation
 
-File format:
+# File format:
   
   *Spheres: rx ry rz color radius
-    -rxyz are the position of the center of each particle
+    -rx ry rz are the coordinates of the center of each particle
     -radius and color are not compulsory to provide
         
   
   *Arrows:  rx ry rz vx vy vz color width
-    -rxyz are the position of the bottom of the arrow
-    -vxyz is the direction of the arrow
+    -rx ry rz are the position of the bottom of the arrow
+    -vx vy vz is the direction of the vector
     -width and color are not compulsory to provide
 
   *Colors code
@@ -46,14 +46,3 @@ File format:
 
   *The end of the frame is indicated with #
 
-  
-Example
-  #
-  0 0 0 2 0
-  0 0 0 2 2 2 2
-  #
-  0 1 0 2 0
-  0 1 0 2 2 2 2
-  #
-  0 2 0 2 0
-  0 2 0 2 2 2 2
