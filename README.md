@@ -1,48 +1,66 @@
 # SVV3D
-Sphere Vector Visualizer in 3D
+Sphere Vector Visualizer in 3D (SVV3D) is a tool for visualizing spheres and vectors in a 3D environment.
 
-# Installing
-```
+## Installation
+Use the following commands to install SVV3D:
+
+```bash
 python setup.py sdist
 pip install dist/SVV3D-1.0.tar.gz
 ```
 
-# Usage:
-  SVV3D filename
+## Usage
+To use SVV3D, simply pass a filename to the program:
 
-# Controls:
-  *Movement:
-    -Move the position of the camera with WASD and shift and control to up and down.
-    -Rotate the animation in XYZ with 123 (clockwise) and 456 (anticlockwise).
-    -With +- change the speed of the movement of the camera.
+```bash
+SVV3D <filename>
+```
 
-  *Frame control:
-    -Press space and R to go to the next and to the previous frame respectively
-    -Press B and T to go the first and to the last frame respectively
+## Controls
+### Movement:
+- Use the `W`, `A`, `S`, and `D` keys to move the camera.
+- Use `Shift` and `Ctrl` to move the camera up and down, respectively.
+- Use the `1`, `2`, and `3` keys to rotate the animation clockwise along the X, Y, and Z axes, respectively.
+- Use the `4`, `5`, and `6` keys to rotate the animation anticlockwise along the X, Y, and Z axes, respectively.
+- Use the `+` and `-` keys to increase and decrease the speed of the camera movement, respectively.
 
-  *Others:
-    -Press C to take a screenshot of the animation
+### Frame Control:
+- Use the `Space` key to advance to the next frame.
+- Use the `R` key to return to the previous frame.
+- Use the `B` key to jump to the first frame.
+- Use the `T` key to jump to the last frame.
 
-# File format:
-  
-  *Spheres: rx ry rz color radius
-    -rx ry rz are the coordinates of the center of each particle
-    -radius and color are not compulsory to provide
-        
-  
-  *Arrows:  rx ry rz vx vy vz color width
-    -rx ry rz are the position of the bottom of the arrow
-    -vx vy vz is the direction of the vector
-    -width and color are not compulsory to provide
+### Others:
+- Use the `C` key to take a screenshot of the animation.
 
-  *Colors code
-     -0 -> White
-     -1 -> Green
-     -2 -> Blue
-     -3 -> Red
-     -4 -> Orange
-     -5 -> Purple
-     -6 -> Grey
+## File Format
+### Spheres
+Each sphere is defined by a line in the following format:
+```
+rx ry rz color radius
+```
+- `rx`, `ry`, `rz`: Coordinates of the center of the sphere
+- `color`: (optional) Color code of the sphere
+- `radius`: (optional) Radius of the sphere
 
-  *The end of the frame is indicated with #
+### Arrows
+Each arrow is defined by a line in the following format:
+```
+rx ry rz vx vy vz color width
+```
+- `rx`, `ry`, `rz`: Position of the base of the arrow
+- `vx`, `vy`, `vz`: Direction vector of the arrow
+- `color`: (optional) Color code of the arrow
+- `width`: (optional) Width of the arrow
+
+### Color Codes
+- `0`: White
+- `1`: Green
+- `2`: Blue
+- `3`: Red
+- `4`: Orange
+- `5`: Purple
+- `6`: Grey
+
+The end of a frame is indicated with a `#` symbol.
 
