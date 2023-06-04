@@ -202,9 +202,10 @@ def decreaseJump():
 
 # Takes a screenshot of the scene
 def screenshot():
-    print("Taking a screenshot of the frame "+str(init.frame))
-    init.scene.capture("screenshot"+str(init.nscreenshots))
-    init.nscreenshots+=1
+    if not is_ctrl_pressed:
+        print("Taking a screenshot of the frame "+str(init.frame))
+        init.scene.capture("screenshot"+str(init.nscreenshots))
+        init.nscreenshots+=1
     
 
 
