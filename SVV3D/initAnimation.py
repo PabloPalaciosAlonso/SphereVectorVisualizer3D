@@ -15,6 +15,7 @@ data = []
 filename = ""
 windowSize = (800,700)
 nscreenshots = 0
+opacity = 1
 
 """ TODO: Solve errors related with animations with different number of particles per frame """
 
@@ -22,12 +23,16 @@ nscreenshots = 0
 def readCMArguments():
     global filename
     global windowSize
+    global opacity
     inputArguments = argparse.ArgumentParser()
-    inputArguments.add_argument('-ws', type = float, nargs = 2, default = (800, 700))
+    inputArguments.add_argument('-WindowSize', type = float, nargs = 2, default = (800, 700))
+    inputArguments.add_argument('-BallOpacity', type = float, nargs = 1, default = 1)
     inputArguments.add_argument('file', nargs = 1)
-    arguments = inputArguments.parse_args()
-    windowSize = arguments.ws
-    filename = arguments.file[0]
+
+    arguments  = inputArguments.parse_args()
+    windowSize = arguments.WindowSize
+    opacity    = arguments.BallOpacity
+    filename   = arguments.file[0]
 
 def readAllFrames():
      global data
@@ -37,7 +42,6 @@ def readAllFrames():
      frames = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
      frames = [[np.fromstring(row, sep=' ') for row in frame.strip().split('\n')] for frame in frames]
 
-     print(frames)
      # Check that all frames have the same length
      frame_len = len(frames[0])
      for i, frame in enumerate(frames[1:], start=1):  # Skip the first frame, because we're using its length as the base
@@ -61,6 +65,7 @@ def createParticleList():
     global particles
     global lbox
     global scene
+    global opacity
     firstFrame = data[0]
     for i in range(maxNParticles):
         [x,y,z] = firstFrame[i][:3]
@@ -69,7 +74,7 @@ def createParticleList():
             radius = 1 if nInputs==3 else firstFrame[i][3]    
             colorId = 0 if nInputs<5 else firstFrame[i][4]
             particles.append(vp.sphere(pos = vp.vector(x,y,z), radius = radius,
-                                       color = color[colorId], opacity=0.5))
+                                       color = color[colorId], opacity=opacity))
             lbox = max(max(2*abs(x),2*abs(y),2*abs(z))+2*radius,lbox)
         else: #Arrow
             [axisx, axisy, axisz] = firstFrame[i][3:6]
