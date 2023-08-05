@@ -31,13 +31,13 @@ SVV3D <filename>
 
 Additional inputs can be given to change the window size and the opacity of the spheres.
 
-To use a different window size, add -WindowSize width height to the command line:
+To use a different window size, add the  -WindowSize option followed by the desired width and height to the command line:
 
 ```bash
 SVV3D <filename> -WindowSize width height
 ```
 
-To change the opacity of the spheres, add -BallOpacity followed by the desired opacity value (between 0 and 1) to the command line:
+To change the opacity of the spheres, add the -BallOpacity option followed by the desired opacity value (between 0 and 1) to the command line:
 
 ```bash
 SVV3D <filename> -WindowSize width height -Opacity opacity
