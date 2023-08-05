@@ -29,6 +29,23 @@ To use SVV3D, simply pass a filename to the program:
 SVV3D <filename>
 ```
 
+Additional inputs can be given to change the window size and the opacity of the spheres.
+
+To use a different window size, add -WindowSize width height to the command line:
+
+```bash
+SVV3D <filename> -WindowSize width height
+```
+
+To change the opacity of the spheres, add -BallOpacity followed by the desired opacity value (between 0 and 1) to the command line:
+
+```bash
+SVV3D <filename> -WindowSize width height -Opacity opacity
+```
+
+Remember, '<filename>', 'width', 'height', and 'opacity' are placeholders and should be replaced with your actual file name, desired dimensions, and desired opacity level respectively.
+
+
 ## Controls
 ### Movement:
 - Use the `W`, `A`, `S`, and `D` keys to move the camera.
