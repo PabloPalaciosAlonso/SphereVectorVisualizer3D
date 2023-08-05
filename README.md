@@ -43,7 +43,7 @@ To change the opacity of the spheres, add the -BallOpacity option followed by th
 SVV3D <filename> -WindowSize width height -Opacity opacity
 ```
 
-Remember, '<filename>', 'width', 'height', and 'opacity' are placeholders and should be replaced with your actual file name, desired dimensions, and desired opacity level respectively.
+Remember, 'filename', 'width', 'height', and 'opacity' are placeholders and should be replaced with your actual file name, desired dimensions, and desired opacity level respectively.
 
 
 ## Controls
