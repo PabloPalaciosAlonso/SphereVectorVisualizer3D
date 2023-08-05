@@ -35,8 +35,9 @@ def readAllFrames():
           content = f.read()
      content = re.sub(r'#.*', '#', content)    
      frames = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
-     frames = [np.array([np.fromstring(row, sep=' ') for row in frame.strip().split('\n')]) for frame in frames]
+     frames = [[np.fromstring(row, sep=' ') for row in frame.strip().split('\n')] for frame in frames]
 
+     print(frames)
      # Check that all frames have the same length
      frame_len = len(frames[0])
      for i, frame in enumerate(frames[1:], start=1):  # Skip the first frame, because we're using its length as the base
@@ -68,7 +69,7 @@ def createParticleList():
             radius = 1 if nInputs==3 else firstFrame[i][3]    
             colorId = 0 if nInputs<5 else firstFrame[i][4]
             particles.append(vp.sphere(pos = vp.vector(x,y,z), radius = radius,
-                                       color = color[colorId]))
+                                       color = color[colorId], opacity=0.5))
             lbox = max(max(2*abs(x),2*abs(y),2*abs(z))+2*radius,lbox)
         else: #Arrow
             [axisx, axisy, axisz] = firstFrame[i][3:6]
