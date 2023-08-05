@@ -3,6 +3,7 @@ import sys
 import argparse
 import vpython as vp
 from . import color
+import re
 
 scene = None
 frame = 0
@@ -17,11 +18,6 @@ nscreenshots = 0
 
 """ TODO: Solve errors related with animations with different number of particles per frame """
 
-def stof(lista):
-     Lista2=[]
-     for elem in lista:
-          Lista2+=[float(elem)]
-     return Lista2
 
 def readCMArguments():
     global filename
@@ -34,22 +30,22 @@ def readCMArguments():
     filename = arguments.file[0]
 
 def readAllFrames():
-    global data
-    filein = open(filename,"r")
-    data = []
-    col = []
-    count = 0
-    for line in filein:
-        if line[0]=="#":
-            if count>0:
-                data+=[col]
-                col = []
-        else:
-            col+=[stof(line.strip().split(' '))]
-            count+=1
-    if len(col)>0:
-        data+=[col]
-        
+     global data
+     with open(filename, 'r') as f:
+          content = f.read()
+     content = re.sub(r'#.*', '#', content)    
+     frames = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
+     frames = [np.array([np.fromstring(row, sep=' ') for row in frame.strip().split('\n')]) for frame in frames]
+
+     # Check that all frames have the same length
+     frame_len = len(frames[0])
+     for i, frame in enumerate(frames[1:], start=1):  # Skip the first frame, because we're using its length as the base
+          if len(frame) != frame_len:
+               raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
+          
+     data = frames
+
+
 def setMaxNParticles():
     global maxNParticles
     maxNParticles = len(data[0])
