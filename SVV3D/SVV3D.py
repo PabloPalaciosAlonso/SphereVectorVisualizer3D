@@ -60,6 +60,8 @@ from pynput.keyboard import Key, Listener, KeyCode
 from . import actions
 from . import initAnimation as init
 import threading
+import atexit
+
 
 def on_press(key):
     options = {KeyCode.from_char('w'):actions.moveForward,
@@ -91,7 +93,10 @@ def on_release(key):
 
     if key in options.keys():
          options[key]()
-         
+
+def exiting():
+    print("Hemos acabado")
+    
 def main():
     init.initializeAnimation()
     actions.moveForward()
@@ -99,7 +104,9 @@ def main():
     listener = Listener(on_press=on_press, on_release=on_release)
     listener.start()
     listener.join()
+    
         
 if __name__ == "__main__":
+    #atexit.register(exiting)
     main()
-    
+    print("Hemos acabado")

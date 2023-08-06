@@ -172,6 +172,8 @@ def rotateZAntiClockwise():
 
 def nextFrame():
     if init.frame<len(init.data)-1:
+        if init.record:            
+            init.scene.capture("frame_"+str(init.frame))
         init.frame+=1
         setPos()
         
@@ -203,8 +205,10 @@ def decreaseJump():
 # Takes a screenshot of the scene
 def screenshot():
     if not is_ctrl_pressed:
+        if not os.path.exists("screenshots"):
+            os.makedirs("screenshots")
         print("Taking a screenshot of the frame "+str(init.frame))
-        init.scene.capture("screenshot"+str(init.nscreenshots))
+        init.scene.capture("screenshots/shot_"+str(init.nscreenshots))
         init.nscreenshots+=1
     
 

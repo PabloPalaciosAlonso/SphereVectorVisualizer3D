@@ -1,21 +1,30 @@
 import numpy as np
 import sys
+import os
 import argparse
 import vpython as vp
 from . import color
 import re
 
-scene = None
-frame = 0
-lbox = 0
-jump = 0.025
-particles = []
+scene         = None
+frame         = 0
+lbox          = 0
+jump          = 0.025
+particles     = []
 maxNParticles = 0
-data = []
-filename = ""
-windowSize = (800,700)
-nscreenshots = 0
-opacity = 1
+data          = []
+filename      = ""
+windowSize    = (800,700)
+nscreenshots  = 0
+opacity       = 1
+
+record = False
+
+#Record the animation for the moment is not allowed, because the animation
+#runs in a browser and saving the images for making the video
+#implies to download (and hence set where you want to download) each frame of the video
+#One way to have the animation is to usa a screen capturer
+
 
 """ TODO: Solve errors related with animations with different number of particles per frame """
 
@@ -24,31 +33,55 @@ def readCMArguments():
     global filename
     global windowSize
     global opacity
+    global record
+    global opacity
+    
     inputArguments = argparse.ArgumentParser()
-    inputArguments.add_argument('-WindowSize', type = float, nargs = 2, default = (800, 700))
-    inputArguments.add_argument('-BallOpacity', type = float, nargs = 1, default = 1)
+    inputArguments.add_argument('--WindowSize' , type = float, nargs = 2, default = (800, 700))
+    inputArguments.add_argument('--record'     , action='store_true')
+    
     inputArguments.add_argument('file', nargs = 1)
 
     arguments  = inputArguments.parse_args()
     windowSize = arguments.WindowSize
-    opacity    = arguments.BallOpacity
     filename   = arguments.file[0]
+    record     = arguments.record
 
+    if record:
+        print("WARNING: The record option is not availble for the moment")
+        record = False
+        
+    if record:
+        if not os.path.exists("tmp"):
+            os.makedirs("tmp")
+        
 def readAllFrames():
-     global data
-     with open(filename, 'r') as f:
-          content = f.read()
-     content = re.sub(r'#.*', '#', content)    
-     frames = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
-     frames = [[np.fromstring(row, sep=' ') for row in frame.strip().split('\n')] for frame in frames]
+    global data
+    global opacity
+    
+    with open(filename, 'r') as f:
+        content = f.read()
 
-     # Check that all frames have the same length
-     frame_len = len(frames[0])
-     for i, frame in enumerate(frames[1:], start=1):  # Skip the first frame, because we're using its length as the base
-          if len(frame) != frame_len:
-               raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
-          
-     data = frames
+    # Read the opacity of the spheres
+    match = re.search(r'#?SPHERE OPACITY ([+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?)', content)
+    if match:
+        opacity = float(match.group(1))
+        if opacity < 0 or opacity > 1:
+            raise ValueError("The opacity of the spheres must be a value between 0 and 1")
+    content = re.sub(r'#.*', '#', content)    
+    frames  = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
+    frames  = [[np.fromstring(row, sep=' ') for row in frame.strip().split('\n')] for frame in frames]
+    # Check that all frames have the same length
+    frame_len     = 0
+    firstFrame_id = 0
+    while frame_len == 0:
+        frame_len = frames[firstFrame_id][0].size
+        firstFrame_id += 1
+
+    for i, frame in enumerate(frames[firstFrame_id:], start=firstFrame_id):
+        if frame[0].size != frame_len:
+            raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
+    data = frames[firstFrame_id:]
 
 
 def setMaxNParticles():
