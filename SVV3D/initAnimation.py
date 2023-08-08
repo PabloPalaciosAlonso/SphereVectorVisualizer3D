@@ -112,11 +112,14 @@ def createParticleList():
         else: #Arrow
             [axisx, axisy, axisz] = firstFrame[i][3:6]
             arrowLength = np.sqrt(axisx*axisx+axisy*axisy+axisz*axisz)
-            colorId = 1 if nInputs == 7 else firstFrame[i][6]
+            colorId = 1 if nInputs == 6 else firstFrame[i][6]
             arrowWidth = arrowLength/17.5 if nInputs < 8 else firstFrame[i][7]
             particles.append(vp.arrow(pos = vp.vector(x,y,z),
                                       axis = vp.vector(axisx, axisy, axisz),
-                                      color = color[colorId], shaftwidth=arrowWidth))
+                                      color = color[colorId],
+                                      shaftwidth =   arrowWidth,
+                                      headwidth  = 3*arrowWidth,
+                                      headlength = 4*arrowWidth))
             maxpos = max(max(x+axisx,y+axisy,z+axisz),-min(x+axisx,y+axisy,z+axisz), lbox)
     scene.camera.pos = vp.vector(0,0,0.9*lbox)
     

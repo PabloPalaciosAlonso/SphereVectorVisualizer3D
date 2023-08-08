@@ -94,9 +94,6 @@ def on_release(key):
     if key in options.keys():
          options[key]()
 
-def exiting():
-    print("Hemos acabado")
-    
 def main():
     init.initializeAnimation()
     actions.moveForward()
@@ -107,6 +104,4 @@ def main():
     
         
 if __name__ == "__main__":
-    #atexit.register(exiting)
     main()
-    print("Hemos acabado")
