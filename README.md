@@ -92,7 +92,10 @@ There are 65 different colors that can be used, the first 14 colors are:
 - `12`: Fuchsia
 - `13`: Grey
 
-The next colors follow the same sequence, starting from red, but in lighter shades.
+The next colors follow the same sequence, starting from red, but in lighter shades, see image.
+
+![Available colors in SVV3D](https://github.com/PabloPalaciosAlonso/SphereVectorVisualizer3D/blob/master/screenshots/shot_0.png)
+
 
 ### Extra parameters
 
