@@ -94,5 +94,9 @@ There are 65 different colors that can be used, the first 14 colors are:
 
 The next colors follow the same sequence, starting from red, but in lighter shades.
 
+### Extra parameters
+
+-`Sphere opacity`: The opacity of the spheres can be changed by adding a line "# SPHERE OPACITY X", where X is a real number between 0.0 and 1.0. Here, 0.0 indicates a transparent sphere, and 1.0 indicates an opaque sphere. By default, the opacity is 1.0.
+
 The end of a frame is indicated with a `#` symbol.
 
