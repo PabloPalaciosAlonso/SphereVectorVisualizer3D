@@ -84,13 +84,23 @@ rx ry rz vx vy vz color width
 - `width`: (optional) Width of the arrow
 
 ### Color Codes
+There are 65 different colors that can be used, the first 14 colors are:
 - `0`: White
-- `1`: Green
-- `2`: Blue
-- `3`: Red
-- `4`: Orange
-- `5`: Purple
-- `6`: Grey
+- `1`: Red
+- `2`: Orange
+- `3`: Yellow
+- `4`: Lime-green
+- `5`: Green
+- `6`: Green-blue
+- `7`: Turquoise
+- `8`: Teal
+- `9`: Blue
+- `10`: Purple
+- `11`: Magenta
+- `12`: Fuchsia
+- `13`: Grey
+
+The next colors follow the same sequence, starting from red, but in lighter shades.
 
 The end of a frame is indicated with a `#` symbol.
 
