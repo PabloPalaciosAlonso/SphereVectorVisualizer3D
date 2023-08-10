@@ -2,7 +2,7 @@ from . import initAnimation as init
 import vpython as vp
 from math import sin, cos
 import time
-
+import os
 
 sqrt3 = 1.7320508075688
 

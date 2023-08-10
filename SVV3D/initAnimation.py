@@ -112,7 +112,7 @@ def createParticleList():
             radius = 1 if nInputs==3 else firstFrame[i][3]    
             colorId = 0 if nInputs<5 else firstFrame[i][4]
             particles.append(vp.sphere(pos = vp.vector(x,y,z), radius = radius,
-                                       color = color[colorId], opacity=opacity))
+                                       color = color[colorId%(len(color.keys()))], opacity=opacity))
             lbox = max(max(2*abs(x),2*abs(y),2*abs(z))+2*radius,lbox)
         else: #Arrow
             [axisx, axisy, axisz] = firstFrame[i][3:6]
@@ -121,7 +121,7 @@ def createParticleList():
             arrowWidth = arrowLength/17.5 if nInputs < 8 else firstFrame[i][7]
             particles.append(vp.arrow(pos = vp.vector(x,y,z),
                                       axis = vp.vector(axisx, axisy, axisz),
-                                      color = color[colorId],
+                                      color = color[colorId%len(color.keys())],
                                       shaftwidth =   arrowWidth,
                                       headwidth  = 3*arrowWidth,
                                       headlength = 4*arrowWidth))

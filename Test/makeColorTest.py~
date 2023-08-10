@@ -1,7 +1,0 @@
-
-numberColors = 38
-file = open("TestColors.svv", "w")
-for i in numberColor:
-    file.write("0 0 "+str(3*i)+" 1 "+str(i))
-
-file.end()
