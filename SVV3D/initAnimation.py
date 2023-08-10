@@ -69,19 +69,24 @@ def readAllFrames():
         if opacity < 0 or opacity > 1:
             raise ValueError("The opacity of the spheres must be a value between 0 and 1")
     content = re.sub(r'#.*', '#', content)    
-    frames  = content.split('#')[1:]  # Split the content into frames, skip the first part if it's empty
+    frames = content.split('#') # Split the content into frames
+    if len(frames)>1:
+        frames  = frames[1:]  
     frames  = [[np.fromstring(row, sep=' ') for row in frame.strip().split('\n')] for frame in frames]
-    # Check that all frames have the same length
-    frame_len     = 0
-    firstFrame_id = 0
-    while frame_len == 0:
-        frame_len = frames[firstFrame_id][0].size
-        firstFrame_id += 1
+    if len(frames)>1:
+        # Check that all frames have the same length
+        frame_len     = 0
+        firstFrame_id = 0
+        while frame_len == 0:
+            frame_len = frames[firstFrame_id][0].size
+            firstFrame_id += 1
 
-    for i, frame in enumerate(frames[firstFrame_id:], start=firstFrame_id):
-        if frame[0].size != frame_len:
-            raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
-    data = frames[firstFrame_id:]
+        for i, frame in enumerate(frames[firstFrame_id:], start=firstFrame_id):
+            if frame[0].size != frame_len:
+                raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
+        data = frames[firstFrame_id:]
+    else:
+        data = frames
 
 
 def setMaxNParticles():
