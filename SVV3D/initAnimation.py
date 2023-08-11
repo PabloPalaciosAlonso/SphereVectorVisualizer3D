@@ -78,13 +78,17 @@ def readAllFrames():
         frame_len     = 0
         firstFrame_id = 0
         while frame_len == 0:
+            #print(frames[firstFrame_id])
             frame_len = frames[firstFrame_id][0].size
+            #if frames[firstFrame_id] == '\n':
+            #    frame_len = 0
+            #print(frame_len)
             firstFrame_id += 1
 
         for i, frame in enumerate(frames[firstFrame_id:], start=firstFrame_id):
             if frame[0].size != frame_len:
                 raise ValueError(f"Frame {i} has a different number of elements ({len(frame)}) than the first frame ({frame_len}).")
-        data = frames[firstFrame_id:]
+        data = frames[firstFrame_id-1:]        
     else:
         data = frames
 
