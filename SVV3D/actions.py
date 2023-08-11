@@ -3,6 +3,7 @@ import vpython as vp
 from math import sin, cos
 import time
 import os
+import threading
 
 sqrt3 = 1.7320508075688
 
@@ -20,6 +21,7 @@ is_4_pressed     = False
 is_5_pressed     = False
 is_6_pressed     = False
 
+is_playing       = False
 
 # Display a frame of the animation
 def setPos():
@@ -192,6 +194,17 @@ def firstFrame():
     init.frame = 0
     setPos()
 
+def play():
+    global is_playing
+    while is_playing:
+        nextFrame()
+        time.sleep(1.0/60)
+
+def toggle_play():
+    global is_playing
+    is_playing = not is_playing
+    if is_playing:
+        threading.Thread(target=play).start()
 ################################## Other actions ##################################
 
 # Increases the jump size

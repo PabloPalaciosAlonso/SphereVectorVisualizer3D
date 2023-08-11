@@ -68,8 +68,8 @@ def on_press(key):
                KeyCode.from_char('s'):actions.moveBackward,
                KeyCode.from_char('a'):actions.moveLeft,
                KeyCode.from_char('d'):actions.moveRight,
-               Key.shift:threading.Thread(target=actions.moveUp).start,
-               Key.ctrl:threading.Thread(target=actions.moveDown).start,
+               Key.shift: lambda: threading.Thread(target=actions.moveUp).start(),
+               Key.ctrl:  lambda: threading.Thread(target=actions.moveDown).start(),
                KeyCode.from_char('1'):actions.rotateXClockwise,
                KeyCode.from_char('2'):actions.rotateYClockwise,
                KeyCode.from_char('3'):actions.rotateZClockwise,
@@ -80,6 +80,7 @@ def on_press(key):
                KeyCode.from_char('r'):actions.previousFrame,
                KeyCode.from_char('b'):actions.firstFrame,
                KeyCode.from_char('t'):actions.lastFrame,
+               KeyCode.from_char('m'):actions.toggle_play,
                KeyCode.from_char('+'):actions.increaseJump,
                KeyCode.from_char('-'):actions.decreaseJump,
                KeyCode.from_char('c'):actions.screenshot}
