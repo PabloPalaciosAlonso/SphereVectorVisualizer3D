@@ -56,6 +56,7 @@ Remember, 'filename', 'width', 'height', and 'opacity' are placeholders and shou
 - Use the `R` key to return to the previous frame.
 - Use the `B` key to jump to the first frame.
 - Use the `T` key to jump to the last frame.
+- Use the `M` key to play the animation at 60 FPS.
 
 ### Others:
 - Use the `C` key to take a screenshot of the animation.
