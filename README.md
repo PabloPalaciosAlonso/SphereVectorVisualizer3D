@@ -1,6 +1,11 @@
 # SVV3D
 Sphere Vector Visualizer in 3D (SVV3D) is a tool for visualizing spheres and vectors in a 3D environment.
 
+![Particles with an internal reference frame](https://github.com/PabloPalaciosAlonso/SphereVectorVisualizer3D/blob/master/screenshots/shot_1.png)
+
+![Particles with an arrow inside them indicating a specific direction in the particles frame](https://github.com/PabloPalaciosAlonso/SphereVectorVisualizer3D/blob/master/screenshots/shot_2.png)
+
+
 ## Installation
 
 Clone this repository:
